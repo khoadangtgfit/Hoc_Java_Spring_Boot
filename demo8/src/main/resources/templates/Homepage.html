@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Tiếng Anh Gà Con</title>
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+Tammudu+2:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/homepage.css">
+
+</head>
+<STYLE>
+    body {
+        text-align: center;
+        height: 100vh;
+        width: 100%;
+        align-items: center;
+        padding: 0 20px;
+        font-family: "Baloo Tammudu 2";
+        /*background-image: url("");*/
+        background-repeat: repeat;
+        background-size: cover;
+    }
+
+    .nav {
+        align-items: center;
+        display: inline-flex;
+        position: relative;
+        overflow: hidden;
+        max-width: 100%;
+        background-color:rgba(150, 174, 178, 0.8);
+        padding: 0 20px;
+        border-radius: 40px;
+        box-shadow: 0 10px 40px rgba(150, 174, 178, 0.8);
+    }
+
+    .nav-item {
+        color: #83818c;
+        padding: 20px;
+        text-decoration: none;
+        transition: 0.3s;
+        margin: 0 7px;
+        z-index: 1;
+        position: relative;
+    }
+
+    .nav-item:before {
+        content: '';
+        position: absolute;
+        bottom: -7px;
+        left: 0px;
+        width: 100%;
+        height: 5px;
+        background-color: #dfe2ea;
+        border-radius: 8px 8px 0 0;
+        opacity: 0;
+        transition: 0.3s;
+    }
+
+    .nav-item:not(.is_active):hover:before {
+        opacity: 1;
+        bottom: 0;
+    }
+
+    .nav-item:not(.is-active):hover {
+        color: #333;
+    }
+
+    .nav-indicator {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        height: 4px;
+        transition: 0.4s;
+        height: 5px;
+        z-index: 1;
+        border-radius: 8px 8px 0 0;
+    }
+
+    .avt {
+        border-radius: 30px;
+        height: 100%;
+        width: 100%;
+    }
+
+    footer {
+        position: relative;
+        bottom: 0;
+        background-color: rgba(38, 150, 160, 0.86);
+        top: auto;
+        bottom: 0;
+        width: 90%;
+        display: inline-block;
+        margin-top: 800px;
+        height: 180px;
+        clear: both;
+        border-radius: 35px;
+    }
+
+
+    /* Ẩn chatbox mặc định */
+
+    .Chatbox {
+        display: none;
+        position: fixed;
+        bottom: 0;
+        right: 15px;
+        border: 3px solid #f1f1f1;
+        z-index: 9;
+    }
+
+
+    /* Thêm style cho form */
+
+    .form-container {
+        text-align: left;
+        margin-left: 60%;
+        border-radius: 30px;
+        max-width: 300px;
+        padding: 10px;
+        background-color: rgba(82, 212, 224, 0.645);
+    ;
+    }
+
+
+    /* thiết lập style textarea */
+
+    .form-container textarea {
+        width: 100%;
+        padding: 5px;
+        margin: 5px 0 22px 0;
+        border: none;
+        background: #f1f1f1;
+        resize: none;
+        min-height: 100px;
+    }
+
+
+    /*thiết lập style cho textarea khi được focus */
+
+    .form-container textarea:focus {
+        background-color: #ddd;
+        outline: none;
+    }
+
+
+    /* Sthiết lập style cho nút trong form*/
+
+    .form-container .btn {
+        background-color: #4CAF50;
+        color: white;
+        padding: 16px 20px;
+        border: none;
+        cursor: pointer;
+        width: 100%;
+        margin-bottom: 10px;
+        opacity: 0.8;
+    }
+
+
+    /* Thiết lập màu nền cho nút đóng chatbox */
+
+    .form-container .nut-dong-chatbox {
+        border-radius: 30px;
+        background-color: rgb(0, 0, 255);
+    }
+
+
+    /* Thêm hiệu ứng hover cho nút*/
+
+    .form-container .btn:hover,
+    .nut-mo-chatbox:hover {
+        opacity: 1;
+    }
+
+    .tab {
+        display: inline-block;
+        list-style: none;
+    }
+
+    .tabb {
+        text-decoration: none;
+    }
+</STYLE>
+<script>
+    function moForm() {
+        document.getElementById("myForm").style.display = "block";
+    }
+    /*Hàm Đóng Form*/
+    function dongForm() {
+        document.getElementById("myForm").style.display = "none";
+    }
+</script>
+<script>
+    var indicator = document.querySelector('.nav-indicator');
+    var items = document.querySelectorAll('.nav-item');
+
+    function handleIndicator(el) {
+        items.forEach(function(item) {
+            item.classList.remove('is-active');
+            item.removeAttribute('style');
+        });
+        indicator.style.width = "".concat(el.offsetWidth, "px");
+        indicator.style.left = "".concat(el.offsetLeft, "px");
+        indicator.style.backgroundColor = el.getAttribute('active-color');
+        el.classList.add('is-active');
+        el.style.color = el.getAttribute('active-color');
+    }
+    items.forEach(function(item, index) {
+        item.addEventListener('click', function(e) {
+            handleIndicator(e.target);
+        });
+        item.classList.contains('is-active') && handleIndicator(item);
+    });
+</script>
+
+<body>
+    <nav class="nav">
+        <a href="#" class="nav-item is-active" active-color="DarkSlateBlue"><i class="fa-sharp fa-solid fa-house"></i>Trang Chủ</a>
+        <a href="#" class="nav-item" active-color="DarkKhaki"><i class="fa-sharp fa-solid fa-book"></i>Từ Vựng</a>
+        <a href="#" class="nav-item" active-color="DeepPink"><i class="fa-sharp fa-solid fa-music"></i>Tập Nghe</a>
+        <a href="#" class="nav-item" active-color="LimeGreen"><i class="fa-solid fa-comment-dots"></i>Tập Đọc</a>
+        <a href="#" class="nav-item" active-color="DarkKhaki"><i class="fa-solid fa-pen"></i>Tập Viết</a>
+        <a href="#" style="display: inline;" type="button" onclick="moForm()">
+            <img x="0" y="0" class="avt" src="Image/avt.jpg" style="height: 40px; width: 40px;">
+            <a>Phan Phước Long</a>
+            </img>
+        </a>
+        <span class="nav-indicator"></span>
+    </nav>
+    <div class="chatbox" id="myForm">
+        <form action="" class="form-container">
+            <ul class="tab" style="display: inline-block;">
+                <li><a href="#" class="tabb">Thông tin cá nhân<i class="fa-sharp fa-solid fa-house"></i></a></li>
+                <li><a href="#" class="tabb">Trợ giúp<i class="fa-sharp fa-solid fa-house"></i></a></li>
+                <li><a href="#" class="tabb">Cài đặt<i class="fa-sharp fa-solid fa-house"></i></a></li>
+                <li><a href="Login.html" class="tabb">Đăng xuất<i class="fa-sharp fa-solid fa-house"></i></a></li>
+            </ul>
+
+            <button type="button" class="btn nut-dong-chatbox" onclick="dongForm()">Đóng</button>
+        </form>
+    </div>
+
+</body>
+<footer>
+    cái này là footer
+</footer>
+
+</html>
